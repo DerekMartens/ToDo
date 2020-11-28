@@ -5,6 +5,7 @@ namespace ToDo.Models
 {
     public class ToDoItem
     {
+        [Key]
         public int Id { get; set; }
         public bool Completed { get; set; }
         [Required]
@@ -14,6 +15,7 @@ namespace ToDo.Models
 
         public Priority? Priority { get; set; }
 
+        [Display(Name = "Due Date")]
         public DateTime? DueDate { get; set; }
     }
 }

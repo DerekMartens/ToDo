@@ -33,6 +33,22 @@ namespace ToDo.Controllers
             return View(viewModel);
         }
 
+        public IActionResult Details(int? id)
+        {
+            var todo = _todoRepository.GetToDoItem(id.Value);
+            if (todo == null)
+            {
+                Response.StatusCode = 404;
+                throw new Exception("Employee Not Found");
+            };
+
+            var viewModel = new ToDoDetailsViewModel
+            {
+                ToDo = todo
+            };
+            return View(viewModel);
+        }
+
         [HttpGet]
         public ViewResult Create()
         {
@@ -49,7 +65,8 @@ namespace ToDo.Controllers
                     Name = model.Name,
                     Description = model.Description,
                     Priority = model.Priority,
-                    DueDate = model.DueDate
+                    DueDate = model.DueDate,
+                    Completed = false
                 };
 
                 _todoRepository.AddToDo(todo);
@@ -81,11 +98,11 @@ namespace ToDo.Controllers
             if (ModelState.IsValid)
             {
                 var todo = _todoRepository.GetToDoItem(model.Id);
-                todo.Completed = todo.Completed;
-                todo.Name = todo.Name;
-                todo.Description = todo.Description;
-                todo.Priority = todo.Priority;
-                todo.DueDate = todo.DueDate;
+                todo.Completed = model.Completed;
+                todo.Name = model.Name;
+                todo.Description = model.Description;
+                todo.Priority = model.Priority;
+                todo.DueDate = model.DueDate;
 
                 _todoRepository.UpdateToDo(todo);
 
