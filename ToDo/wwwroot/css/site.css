@@ -26,3 +26,8 @@ body {
 .nav-link{
     font-size:x-large;
 }
+
+tbody td a,
+tbody td a:hover{
+    color: white;
+}
