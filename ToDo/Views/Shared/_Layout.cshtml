@@ -8,33 +8,25 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <nav class="nav">
-        <div class="container">
-            <div class="logo">
-                <img src="~/images/headshot-white.png" />
-            </div>
-            <div id="mainListDiv" class="main_list">
-                <ul class="navlinks">
-                    <li><a asp-controller="Home" asp-action="index">Home</a></li>
-                    <li><a asp-controller="Home" asp-action="create">Create</a></li>
-                </ul>
-            </div>
-            <span class="navTrigger">
-                <i></i>
-                <i></i>
-                <i></i>
-            </span>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="https://www.martensderek.com"><img src="~/images/headshot-white.png" /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="create">Create</a>
+                </li>
+            </ul>
         </div>
     </nav>
-
-    <section class="home">
-    </section>
-
     <div class="container">
         <main role="main" class="pb-3">
-            <div class="content">
-                @RenderBody()
-            </div>
+            @RenderBody()
         </main>
     </div>
 

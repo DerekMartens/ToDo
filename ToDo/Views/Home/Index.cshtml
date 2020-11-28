@@ -17,14 +17,14 @@
                     <th>Priority</th>
                     <th>Due Date</th>
                     <th>Completed</th>
-                    <th>Details</th>
+                    <th>Edit ToDo</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var todo in Model.ToDoItems)
                 {
                     <tr>
-                        <td class="">
+                        <td>
                             @Html.DisplayFor(ModelItem => todo.Id)
                         </td>
                         <td>
@@ -33,15 +33,12 @@
                         <td>
                             @Html.DisplayFor(modelItem => todo.Priority)
                         </td>
-                        <td class="">
+                        <td>
                             @Html.DisplayFor(modelItem => todo.DueDate)
                         </td>
                         <td class="custom-control custom-checkbox text-center">
                             <input type="checkbox" asp-for="@todo.Completed">
                             <input type="checkbox" class="custom-control-input disabled" asp-for="@todo.Completed">
-                            @*<label class="custom-control-label disabled">
-                                    <span class="sr-only">Never</span>
-                                </label>*@
                         </td>
                         <td>
                             <a asp-controller="Home" asp-action="Edit" asp-route-id="@todo.Id">Modify</a>

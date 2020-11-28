@@ -1,5 +1,50 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using ToDo.ViewModels
+@model ToDoEditViewModel
 @{
+    ViewBag.Title = "Edit ToDo";
 }
+<div class="text-center pt-5 pb-5">
+    <h1 class="display-4">Modify "@Model.Name" Task</h1>
+</div>
+<form enctype="multipart/form-data" class="text-center" asp-controller="home" asp-action="edit" method="post">
+    <input hidden asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Name" class="col-form-label-lg">Name</label>
+        <div class="col-sm-12">
+            <input asp-for="Name" class="form-control" placeholder="Name the Task" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="col-form-label-lg">Description</label>
+        <div class="col-sm-12">
+            <textarea asp-for="Description" class="form-control" rows="3" placeholder="Describe the Task"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-6">
+            <label asp-for="Priority" class="col-form-label-lg">Priority</label>
+            <div class="col-sm-10 offset-sm-1">
+                <select asp-for="Priority" class="custom-select" asp-items="Html.GetEnumSelectList<Priority>()">
+                    <option value="">Please Select</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-6">
+            <label asp-for="DueDate" class="col-form-label-lg">Due Date</label>
+            <div class="col-sm-10 offset-sm-1 date">
+                <input asp-for="DueDate" />
+            </div>
+        </div>
+    </div>
+    <div class="form-check">
+        <label asp-for="Completed" class="col-form-label-lg pr-2">Completed</label>
+        <input asp-for="Completed" type="checkbox" />
+    </div>
+    <div class="form-group row mt-2">
+        <div class="col-sm-10 offset-sm-1">
+            <button type="submit" class="btn btn-light btn-lg">Submit</button>
+        </div>
+    </div>
+</form>
